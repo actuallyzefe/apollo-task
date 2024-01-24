@@ -26,7 +26,7 @@ cookies that include the token.
 
 I needed to implement authorization to prevent security issues.
 
-#### Adding Index
+#### Adding Index
 
 First of all, backend checking the value of the index.If the value is negative, we are returning a response with a status code of 400.
 
