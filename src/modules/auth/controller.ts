@@ -67,7 +67,6 @@ export async function login(req: Request, res: Response) {
   );
 
   res.cookie("jsonwebtoken", token);
-  console.log(req.cookies);
   return res.json({ token });
 }
 

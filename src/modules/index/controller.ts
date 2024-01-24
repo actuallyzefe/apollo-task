@@ -19,7 +19,7 @@ export async function addIndex(req: Request, res: Response) {
 
   const user = await userRepository.findOne(userId);
 
-  if (req.user?.id !== userId) {
+  if (req.user?.userId !== userId) {
     res.clearCookie("jsonwebtoken");
     return res
       .status(403)
