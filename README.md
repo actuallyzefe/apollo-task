@@ -16,7 +16,8 @@ After succesfully registered, Login with same credentials and tada! 🎉 You are
 
 #### Authenticaion
 
-Under the hood, when a register request comes in, The backend hashing password and creating a user in postgres with given informations. On the login request, the backend checking password with hash and giving if passwords matches, hashing user without 'password' field and returning a response including jwt; `{ jwt: 'eyJ...'}`
+Under the hood, when a register request comes in, The backend hashing password and creating a user in postgres with given informations. On the login request, the backend checking password with hash and giving if passwords matches, hashing user without 'password' field and returning a response including jwt and cookies; `{ token: 'eyJ...'}`
+cookies that include the token.
 
 #### Authorization
 
@@ -48,4 +49,3 @@ There are a lot of things to improve but due to task complete time limit I'm not
 
 - Backend:
   - It would be very nice to have a swagger documentation.
-  - I would calculate the Back of the Envelope Calculations
