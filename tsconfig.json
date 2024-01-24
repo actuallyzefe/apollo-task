@@ -11,8 +11,8 @@
     "forceConsistentCasingInFileNames": true,
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
-    "lib": ["ES2015", "DOM"]
+    "lib": ["ES2016", "DOM"]
   },
-  "include": ["src/**/*.ts"],
+  "include": ["src/**/*.ts", "types.d.ts"],
   "exclude": ["node_modules"]
 }

@@ -22,6 +22,17 @@ export async function signup(req: Request, res: Response) {
     companyName,
   });
 
+  const token = jwt.sign(
+    {
+      id: user.id,
+      email: user.email,
+      company: user.companyName,
+    },
+    process.env.JWT_SECRET!
+  );
+
+  res.cookie("jsonwebtoken", token);
+
   await userRepository.save(user);
 
   return res.status(201).json({ message: "User registered" });
@@ -55,9 +66,12 @@ export async function login(req: Request, res: Response) {
     }
   );
 
+  res.cookie("jsonwebtoken", token);
+  console.log(req.cookies);
   return res.json({ token });
 }
 
-export async function logout(req: Request, res: Response) {
-  return res.status(200).json({ message: "Logout successful" });
+export function logout(req: Request, res: Response) {
+  res.clearCookie("jsonwebtoken");
+  res.sendStatus(200);
 }
