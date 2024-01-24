@@ -17,7 +17,10 @@ After succesfully registered, Login with same credentials and tada! 🎉 You are
 #### Authenticaion
 
 Under the hood, when a register request comes in, The backend hashing password and creating a user in postgres with given informations. On the login request, the backend checking password with hash and giving if passwords matches, hashing user without 'password' field and returning a response including jwt and cookies; `{ token: 'eyJ...'}`
+
 cookies that include the token.
+`cookie name: jsonwebtoken`
+`cookie value: eyJ...`
 
 #### Authorization
 
