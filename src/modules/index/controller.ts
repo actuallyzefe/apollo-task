@@ -32,7 +32,6 @@ export async function addIndex(req: Request, res: Response) {
 
     await indexRepository.save(newIndex);
 
-    // Get the nearest previous and next index entries
     const previousIndex = await indexRepository.findOne({
       where: { user, date: LessThan(date) },
       order: { date: "DESC" },
@@ -42,7 +41,6 @@ export async function addIndex(req: Request, res: Response) {
       order: { date: "ASC" },
     });
 
-    // Calculate and save consumption for previous to current
     if (previousIndex) {
       const daysBetween =
         (new Date(date).getTime() - new Date(previousIndex.date).getTime()) /
@@ -50,36 +48,53 @@ export async function addIndex(req: Request, res: Response) {
       const dailyConsumption =
         (newIndex.value - previousIndex.value) / daysBetween;
 
-      for (let day = 1; day <= daysBetween; day++) {
+      for (let day = 0; day < daysBetween; day++) {
         const consumptionDate = new Date(previousIndex.date);
         consumptionDate.setDate(consumptionDate.getDate() + day);
 
-        const newConsumption = consumptionRepository.create({
-          date: consumptionDate,
-          value: dailyConsumption,
-          user,
+        const existingConsumption = await consumptionRepository.findOne({
+          where: { user, date: consumptionDate },
         });
-        await consumptionRepository.save(newConsumption);
+
+        if (existingConsumption) {
+          existingConsumption.value = dailyConsumption;
+          await consumptionRepository.save(existingConsumption);
+        } else {
+          const newConsumption = consumptionRepository.create({
+            date: consumptionDate,
+            value: dailyConsumption,
+            user,
+          });
+          await consumptionRepository.save(newConsumption);
+        }
       }
     }
 
-    // Calculate and save consumption for current to next
     if (nextIndex) {
       const daysBetween =
         (new Date(nextIndex.date).getTime() - new Date(date).getTime()) /
         (1000 * 3600 * 24);
       const dailyConsumption = (nextIndex.value - newIndex.value) / daysBetween;
 
-      for (let day = 1; day < daysBetween; day++) {
+      for (let day = 0; day <= daysBetween; day++) {
         const consumptionDate = new Date(date);
         consumptionDate.setDate(consumptionDate.getDate() + day);
 
-        const newConsumption = consumptionRepository.create({
-          date: consumptionDate,
-          value: dailyConsumption,
-          user,
+        const existingConsumption = await consumptionRepository.findOne({
+          where: { user, date: consumptionDate },
         });
-        await consumptionRepository.save(newConsumption);
+
+        if (existingConsumption) {
+          existingConsumption.value = dailyConsumption;
+          await consumptionRepository.save(existingConsumption);
+        } else {
+          const newConsumption = consumptionRepository.create({
+            date: consumptionDate,
+            value: dailyConsumption,
+            user,
+          });
+          await consumptionRepository.save(newConsumption);
+        }
       }
     }
 
