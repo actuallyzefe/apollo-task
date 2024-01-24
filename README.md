@@ -16,7 +16,7 @@ After succesfully registered, Login with same credentials and tada! 🎉 You are
 
 #### Authenticaion
 
-Under the hood, when a register request comes in, The backend hashing password and creating a user in postgres with given informations. On the login request, the backend checking password with hash and giving if passwords matches, hashing user without 'password' field and returning a response including jwt and cookies; `{ token: 'eyJ...'}`
+Under the hood, when a signup request comes in, The backend hashing password and creating a user in postgres with given informations. On the login request, the backend checking password with hash if passwords matches, returning a response including jwt and cookies; `{ token: 'eyJ...'}`
 
 cookies that include the token.
 `cookie name: jsonwebtoken`
@@ -25,7 +25,22 @@ cookies that include the token.
 #### Authorization
 
 I needed to implement authorization to prevent security issues.
-Only the correct user (who's added the indexes) can add index for its company or remove.
+
+### Adding Index
+
+First of all, backend checking the value of the index.If the value is negative, we are returning a response with a status code of 400.
+
+After that we are checking the userIds.
+If the currently authenticated user's id `(retrieved from req.user)`
+isnt mathing with the userId variable we are logging the user out and response with status code of 403.
+
+When an index added both `Consumption` and `Index` tables are filling in.
+User added the first index, we are filling the `ındex Table` but `NOT` `Consumption Table`. Becasue we cannot calculate the Consumption with 1 index.
+When user added another index, we will be filling the `Consumption` table and the `Index Table`. Now we have te consumption, and the 2 indexes 😊
+
+We also have another case;
+We must distribute the consumption values equally when we have a date range like:
+If we add index on Feb 1 with value of 100 and another index on Feb 3 with value of 500, the consumptions for Feb 1 and Feb 2 must be distributed equally 200-200.
 
 ### Tech Stack
 
@@ -47,8 +62,6 @@ I have prior experience working with PostgreSQL, which influenced my decision to
 Github Actions is provides fast and easy way to create pipelines. I can publish image to ECR and deploy to ECS on a fargate instance. ECS enables us to scale app to some point where we need to Kubernetes.
 
 ## What to Improve?
-
-There are a lot of things to improve but due to task complete time limit I'm not able to do them all.
 
 - Backend:
   - It would be very nice to have a swagger documentation.
