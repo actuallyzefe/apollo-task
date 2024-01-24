@@ -26,7 +26,7 @@ cookies that include the token.
 
 I needed to implement authorization to prevent security issues.
 
-### Adding Index
+#### Adding Index
 
 First of all, backend checking the value of the index.If the value is negative, we are returning a response with a status code of 400.
 
@@ -36,7 +36,7 @@ isnt mathing with the userId variable we are logging the user out and response w
 
 When an index added both `Consumption` and `Index` tables are filling in.
 User added the first index, we are filling the `ındex Table` but `NOT` `Consumption Table`. Becasue we cannot calculate the Consumption with 1 index.
-When user added another index, we will be filling the `Consumption` table and the `Index Table`. Now we have te consumption, and the 2 indexes 😊
+When user added another index, we will be filling the `Consumption` table and the `Index Table`. Now we have the consumption, and the 2 indexes 😊
 
 We also have another case;
 We must distribute the consumption values equally when we have a date range like:
@@ -52,6 +52,8 @@ If we add index on Feb 1 with value of 100 and another index on Feb 3 with value
 - ⁠AWS ECS (Fargate)
 
 ## Why I used This Stack?
+
+#### Db and ORM
 
 With TypeScript, TypeORM provides a strong typing system, ensuring that database interactions are type-safe and reducing runtime errors.TypeORM simplifies database operations by allowing developers to work with objects and classes instead of raw SQL queries, making code more readable and maintainable.
 
