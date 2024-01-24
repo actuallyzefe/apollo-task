@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
-import { User } from "../../entities/User";
+import { User } from "../../entities/user";
 
 export async function signup(req: Request, res: Response) {
   const { email, password, companyName } = req.body;
@@ -71,6 +71,5 @@ export async function login(req: Request, res: Response) {
 }
 
 export function logout(req: Request, res: Response) {
-  res.clearCookie("jsonwebtoken");
-  res.sendStatus(200);
+  return res.clearCookie("jsonwebtoken").sendStatus(200);
 }

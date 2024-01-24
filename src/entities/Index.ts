@@ -1,5 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { User } from "./User";
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  ManyToOne,
+  JoinColumn,
+} from "typeorm";
+import { User } from "./user";
 
 @Entity()
 export class Index {
@@ -14,4 +20,7 @@ export class Index {
 
   @ManyToOne(() => User, (user) => user.indexes)
   user: User;
+
+  @Column()
+  userId: number;
 }

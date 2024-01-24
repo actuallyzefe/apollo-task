@@ -1,8 +1,8 @@
 import { getRepository, LessThan, MoreThan } from "typeorm";
-import { User } from "../../entities/User";
-import { Consumption } from "../../entities/Consumption";
+import { User } from "../../entities/user";
+import { Consumption } from "../../entities/consumption";
 import { Request, Response } from "express";
-import { Index } from "../../entities/Index";
+import { Index } from "../../entities";
 
 export async function addIndex(req: Request, res: Response) {
   const { userId, date, value } = req.body;
@@ -23,7 +23,9 @@ export async function addIndex(req: Request, res: Response) {
     res.clearCookie("jsonwebtoken");
     return res
       .status(403)
-      .json({ message: "you are not allowed to perform this action" });
+      .json({
+        message: "you are not allowed to perform this action, logging you out.",
+      });
   }
 
   if (!user) {

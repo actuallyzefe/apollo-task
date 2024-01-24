@@ -1,7 +1,7 @@
 {
-  "name": "typeorm-sample",
+  "name": "apollo-task",
   "version": "0.0.1",
-  "description": "Awesome project developed with TypeORM.",
+  "description": "Apollo Task",
   "type": "commonjs",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
