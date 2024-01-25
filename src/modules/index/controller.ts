@@ -1,7 +1,7 @@
 import { getRepository, LessThan, MoreThan } from "typeorm";
 import { Request, Response } from "express";
 import { Index } from "../../entities/index.";
-import { Consumption } from "../../entities/consumption";
+import { Consumption } from "../../entities/Consumption";
 import { User } from "../../entities/user";
 
 export async function addIndex(req: Request, res: Response) {
