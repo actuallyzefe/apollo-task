@@ -1,8 +1,8 @@
 import { getRepository, LessThan, MoreThan } from "typeorm";
 import { Request, Response } from "express";
 import { Index } from "../../entities/index.";
-import { Consumption } from "../../entities/test";
-import { User } from "../../entities/a";
+import { Consumption } from "../../entities/consumption";
+import { User } from "../../entities/user";
 
 export async function addIndex(req: Request, res: Response) {
   const { userId, date, value } = req.body;
