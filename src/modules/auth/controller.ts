@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { getRepository } from "typeorm";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
-import { User } from "../../entities/user";
+import { User } from "../../entities/a";
 
 export async function signup(req: Request, res: Response) {
   const { email, password, companyName } = req.body;

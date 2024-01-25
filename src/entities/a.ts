@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
 import { Index } from "./index.";
-import { Consumption } from "./Consumption";
+import { Consumption } from "./test";
 
 @Entity()
 export class User {

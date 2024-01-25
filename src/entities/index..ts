@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToOne } from "typeorm";
-import { User } from "./user";
+import { User } from "./a";
 
 @Entity()
 export class Index {
