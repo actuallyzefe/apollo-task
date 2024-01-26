@@ -18,7 +18,7 @@ services:
       - JWT_SECRET=apollo-task-secret
       - PORT=3000
       - PGUSER=postgres
-      - PGHOST=postgres
+      - PGHOST=localhost
       - PGDATABASE=postgres
       - PGPASSWORD=postgres
       - PGPORT=5432

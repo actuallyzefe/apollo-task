@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from "typeorm";
-import { Index } from "./index.";
+import { Index } from ".";
 import { Consumption } from "./consumption";
 
 @Entity()
