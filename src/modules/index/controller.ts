@@ -1,6 +1,6 @@
 import { getRepository, LessThan, MoreThan } from "typeorm";
 import { Request, Response } from "express";
-import { Index } from "../../entities";
+import { Index } from "../../entities/index";
 import { Consumption } from "../../entities/consumption";
 import { User } from "../../entities/user";
 
